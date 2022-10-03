@@ -69,14 +69,10 @@ def get_page(i=1):
     )
   ).set_index("ranks")
 
-# Commented out IPython magic to ensure Python compatibility.
-# %%time 
-# # sometime it will have error
-# with Pool(20) as p:
-#   table = pd.concat(
-#     p.map(get_page, range(1,21))
-#   )
-
-table
+# sometime it will have error
+with Pool(20) as p:
+  table = pd.concat(
+    p.map(get_page, range(1,21))
+  )
 
 table.to_csv("top1000.csv", sep="\t")
